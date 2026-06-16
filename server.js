@@ -93,7 +93,9 @@ async function saveContact(contact) {
 }
 
 async function supabaseRequest(pathname, options = {}) {
-  const baseUrl = process.env.SUPABASE_URL.replace(/\/$/, "");
+  const baseUrl = process.env.SUPABASE_URL
+    .replace(/\/$/, "")
+    .replace(/\/rest\/v1$/, "");
   const key = process.env.SUPABASE_SERVICE_ROLE_KEY;
   const response = await fetch(`${baseUrl}/rest/v1/${pathname}`, {
     ...options,
