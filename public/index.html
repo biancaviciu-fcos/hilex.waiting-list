@@ -1,0 +1,126 @@
+<!doctype html>
+<html lang="ro">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>HiLex Individuals | Lista de asteptare</title>
+    <meta
+      name="description"
+      content="Intra pe lista de asteptare HiLex Individuals pentru acces rapid la explicatii juridice clare."
+    />
+    <link rel="stylesheet" href="/styles.css" />
+  </head>
+  <body>
+    <main class="page-shell" data-launch-date="__LAUNCH_DATE__">
+      <section class="hero" aria-label="HiLex Individuals lista de asteptare">
+        <div class="hero-copy">
+          <p class="pill">
+            <svg viewBox="0 0 24 24" aria-hidden="true">
+              <path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2" />
+              <circle cx="9" cy="7" r="4" />
+              <path d="M22 21v-2a4 4 0 0 0-3-3.87" />
+              <path d="M16 3.13a4 4 0 0 1 0 7.75" />
+            </svg>
+            IN CURAND
+          </p>
+
+          <h1>Protectia <span>ta</span> legala.<br />Pentru <span>viata</span> reala.</h1>
+
+          <p class="lead-strong">Situatii reale. Explicatii clare.</p>
+          <p class="lead">Acces rapid la informatia de care ai nevoie, fara termeni complicati.</p>
+
+          <div class="feature-grid" aria-label="Beneficii">
+            <article class="feature-card">
+              <span class="feature-icon">
+                <svg viewBox="0 0 24 24" aria-hidden="true">
+                  <path d="M18 21a6 6 0 0 0-12 0" />
+                  <circle cx="12" cy="8" r="4" />
+                  <path d="M21 10h-4" />
+                  <path d="M19 8v4" />
+                </svg>
+              </span>
+              <h2>Situatii reale</h2>
+              <p>Raspunsuri pentru probleme juridice din viata de zi cu zi.</p>
+            </article>
+
+            <article class="feature-card">
+              <span class="feature-icon">
+                <svg viewBox="0 0 24 24" aria-hidden="true">
+                  <path d="M21 15a4 4 0 0 1-4 4H8l-5 3V7a4 4 0 0 1 4-4h10a4 4 0 0 1 4 4z" />
+                  <path d="M8 9h8" />
+                  <path d="M8 13h5" />
+                </svg>
+              </span>
+              <h2>Explicatii clare</h2>
+              <p>Informatii prezentate simplu, fara termeni complicati.</p>
+            </article>
+
+            <article class="feature-card">
+              <span class="feature-icon">
+                <svg viewBox="0 0 24 24" aria-hidden="true">
+                  <path d="m13 2-9 14h8l-1 6 9-14h-8z" />
+                </svg>
+              </span>
+              <h2>Acces rapid</h2>
+              <p>Gasesti rapid ceea ce ai nevoie, atunci cand conteaza.</p>
+            </article>
+          </div>
+
+          <section class="countdown" aria-label="Numaratoare inversa pana la lansare">
+            <p><span>HiLex</span> se lanseaza in:</p>
+            <div class="time-grid">
+              <div><strong id="days">00</strong><small>Zile</small></div>
+              <div><strong id="hours">00</strong><small>Ore</small></div>
+              <div><strong id="minutes">00</strong><small>Minute</small></div>
+              <div><strong id="seconds">00</strong><small>Secunde</small></div>
+            </div>
+          </section>
+        </div>
+
+        <aside class="signup-panel" aria-label="Formular lista de asteptare">
+          <a class="brand" href="/" aria-label="HiLex Individuals">
+            <strong>Hi<span>Lex</span></strong>
+            <small>INDIVIDUALS</small>
+          </a>
+
+          <div class="mail-mark" aria-hidden="true">
+            <svg viewBox="0 0 24 24">
+              <rect x="3" y="5" width="18" height="14" rx="2" />
+              <path d="m3 7 9 6 9-6" />
+            </svg>
+          </div>
+
+          <div class="panel-heading">
+            <h2>Intra pe lista de asteptare</h2>
+            <p>Fii printre primii care afla cand lansam.</p>
+          </div>
+
+          <form class="waitlist-form" id="waitlistForm">
+            <label>
+              <span>Prenume</span>
+              <input name="firstName" type="text" autocomplete="given-name" placeholder="Prenume" required />
+            </label>
+            <label>
+              <span>Nume</span>
+              <input name="lastName" type="text" autocomplete="family-name" placeholder="Nume" required />
+            </label>
+            <label>
+              <span>Email</span>
+              <input name="email" type="email" autocomplete="email" placeholder="Email" required />
+            </label>
+
+            <label class="consent">
+              <input name="marketingConsent" type="checkbox" required />
+              <span>Sunt de acord sa primesc emailuri despre MAGNA</span>
+            </label>
+
+            <button type="submit">Ma inscriu pe lista de asteptare</button>
+            <p class="form-status" id="formStatus" role="status" aria-live="polite"></p>
+          </form>
+        </aside>
+      </section>
+    </main>
+
+    <script src="/script.js" type="module"></script>
+  </body>
+</html>
