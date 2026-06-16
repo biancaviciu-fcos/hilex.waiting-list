@@ -45,16 +45,16 @@ body::after {
 
 .page-shell {
   min-height: 100vh;
-  padding: clamp(24px, 3vw, 52px);
+  padding: clamp(22px, 2.6vw, 44px);
 }
 
 .hero {
   display: grid;
-  grid-template-columns: minmax(620px, 1.03fr) minmax(420px, 0.92fr);
-  gap: clamp(32px, 4.2vw, 64px);
+  grid-template-columns: minmax(600px, 1.03fr) minmax(400px, 0.9fr);
+  gap: clamp(30px, 3.8vw, 58px);
   align-items: center;
-  max-width: 1600px;
-  min-height: calc(100vh - clamp(48px, 6vw, 104px));
+  max-width: 1500px;
+  min-height: calc(100vh - clamp(44px, 5.2vw, 88px));
   margin: 0 auto;
 }
 
@@ -86,9 +86,9 @@ svg {
 
 h1 {
   margin: 0;
-  max-width: 850px;
+  max-width: 760px;
   font-family: Georgia, "Times New Roman", serif;
-  font-size: clamp(46px, 4.2vw, 78px);
+  font-size: clamp(40px, 3.35vw, 64px);
   line-height: 0.95;
   letter-spacing: 0;
 }
@@ -100,31 +100,31 @@ h1 span,
 }
 
 .lead-strong {
-  margin: 30px 0 8px;
-  font-size: clamp(22px, 1.7vw, 28px);
+  margin: 26px 0 8px;
+  font-size: clamp(21px, 1.45vw, 25px);
   font-weight: 700;
 }
 
 .lead {
-  max-width: 640px;
-  margin: 0 0 38px;
+  max-width: 600px;
+  margin: 0 0 32px;
   color: var(--muted);
-  font-size: clamp(19px, 1.55vw, 25px);
+  font-size: clamp(18px, 1.35vw, 22px);
   line-height: 1.38;
 }
 
 .feature-grid {
   display: grid;
   grid-template-columns: repeat(3, minmax(0, 1fr));
-  gap: 22px;
-  margin-bottom: 30px;
+  gap: 18px;
+  margin-bottom: 26px;
 }
 
 .feature-card {
   display: grid;
   justify-items: center;
-  min-height: 220px;
-  padding: 30px 22px 26px;
+  min-height: 198px;
+  padding: 24px 20px 22px;
   border: 1px solid rgba(17, 24, 106, 0.08);
   border-radius: 18px;
   background: rgba(255, 255, 255, 0.72);
@@ -135,29 +135,29 @@ h1 span,
 .feature-icon {
   display: grid;
   place-items: center;
-  width: 72px;
-  height: 72px;
+  width: 66px;
+  height: 66px;
   border-radius: 50%;
   background: #eeedf4;
   color: var(--navy);
 }
 
 .feature-card h2 {
-  margin: 22px 0 10px;
-  font-size: 22px;
+  margin: 18px 0 8px;
+  font-size: 20px;
   line-height: 1.1;
 }
 
 .feature-card p {
   margin: 0;
   color: #3d4364;
-  font-size: 17px;
+  font-size: 16px;
   line-height: 1.35;
 }
 
 .countdown {
-  max-width: 760px;
-  padding: 28px 32px;
+  max-width: 720px;
+  padding: 24px 30px;
   border: 1px solid rgba(17, 24, 106, 0.08);
   border-radius: 20px;
   background: rgba(255, 255, 255, 0.76);
@@ -166,8 +166,8 @@ h1 span,
 }
 
 .countdown p {
-  margin: 0 0 20px;
-  font-size: 22px;
+  margin: 0 0 18px;
+  font-size: 20px;
   font-weight: 800;
 }
 
@@ -181,7 +181,7 @@ h1 span,
 .time-grid div {
   display: grid;
   gap: 4px;
-  min-height: 86px;
+  min-height: 78px;
   place-content: center;
   border-left: 1px solid var(--line);
 }
@@ -192,12 +192,12 @@ h1 span,
 
 .time-grid strong {
   color: #22236f;
-  font-size: clamp(30px, 3vw, 44px);
+  font-size: clamp(28px, 2.6vw, 38px);
   line-height: 1;
 }
 
 .time-grid small {
-  font-size: 17px;
+  font-size: 15px;
   font-weight: 700;
 }
 
@@ -207,8 +207,8 @@ h1 span,
   display: flex;
   flex-direction: column;
   justify-content: center;
-  min-height: 680px;
-  padding-top: 84px;
+  min-height: 640px;
+  padding-top: 78px;
 }
 
 .brand {
@@ -222,16 +222,16 @@ h1 span,
 }
 
 .brand strong {
-  font-size: clamp(58px, 6vw, 98px);
+  font-size: clamp(52px, 5.2vw, 86px);
   line-height: 0.8;
 }
 
 .brand small {
-  margin-top: 20px;
-  padding-top: 14px;
+  margin-top: 18px;
+  padding-top: 12px;
   border-top: 3px solid var(--pink);
   color: var(--pink);
-  font-size: 18px;
+  font-size: 16px;
   font-weight: 900;
   letter-spacing: 10px;
 }
@@ -239,9 +239,9 @@ h1 span,
 .mail-mark {
   display: grid;
   place-items: center;
-  width: 102px;
-  height: 102px;
-  margin: 34px auto 26px;
+  width: 92px;
+  height: 92px;
+  margin: 30px auto 22px;
   border: 2px solid rgba(220, 45, 148, 0.18);
   border-radius: 50%;
   color: var(--pink);
@@ -254,23 +254,23 @@ h1 span,
 
 .panel-heading h2 {
   margin: 0;
-  font-size: clamp(32px, 3vw, 46px);
+  font-size: clamp(30px, 2.55vw, 40px);
   line-height: 1.12;
   font-weight: 500;
 }
 
 .panel-heading p {
-  margin: 12px 0 34px;
+  margin: 10px 0 28px;
   color: #7b8199;
-  font-size: 22px;
+  font-size: 20px;
 }
 
 .waitlist-form {
   display: grid;
-  gap: 16px;
-  width: min(100%, 640px);
+  gap: 14px;
+  width: min(100%, 600px);
   margin: 0 auto;
-  padding: 50px 44px;
+  padding: 42px 40px;
   border-radius: 24px;
   background: var(--navy);
   box-shadow: 0 24px 70px rgba(7, 11, 58, 0.22);
@@ -288,13 +288,13 @@ h1 span,
 input[type="text"],
 input[type="email"] {
   width: 100%;
-  min-height: 78px;
-  padding: 0 32px;
+  min-height: 68px;
+  padding: 0 28px;
   border: 2px solid transparent;
   border-radius: 12px;
   color: var(--ink);
   font-family: Georgia, "Times New Roman", serif;
-  font-size: 21px;
+  font-size: 19px;
   outline: 0;
   transition: border-color 0.2s ease, box-shadow 0.2s ease;
 }
@@ -310,7 +310,7 @@ input:focus {
   gap: 12px;
   color: white;
   font-family: Georgia, "Times New Roman", serif;
-  font-size: 18px;
+  font-size: 17px;
   line-height: 1.35;
 }
 
@@ -322,12 +322,12 @@ input:focus {
 }
 
 button {
-  min-height: 68px;
+  min-height: 60px;
   border: 0;
   border-radius: 12px;
   background: var(--pink);
   color: white;
-  font-size: clamp(18px, 2vw, 24px);
+  font-size: clamp(17px, 1.7vw, 21px);
   font-weight: 600;
   cursor: pointer;
   transition: background 0.2s ease, transform 0.2s ease;
@@ -347,22 +347,35 @@ button:disabled {
 .thank-you-shell {
   display: grid;
   place-items: center;
+  padding-top: clamp(22px, 3vw, 42px);
+  padding-bottom: clamp(22px, 3vw, 42px);
 }
 
 .thank-you-view {
   display: grid;
   justify-items: center;
-  gap: 30px;
-  width: min(100%, 860px);
+  gap: 18px;
+  width: min(100%, 640px);
 }
 
 .thank-you-brand {
   position: static;
 }
 
+.thank-you-brand strong {
+  font-size: clamp(44px, 4.8vw, 62px);
+}
+
+.thank-you-brand small {
+  margin-top: 12px;
+  padding-top: 8px;
+  font-size: 13px;
+  letter-spacing: 7px;
+}
+
 .thank-you-card {
-  width: min(100%, 760px);
-  padding: clamp(34px, 5vw, 64px);
+  width: min(100%, 600px);
+  padding: clamp(26px, 3.4vw, 38px);
   border: 1px solid rgba(17, 24, 106, 0.08);
   border-radius: 24px;
   background: rgba(255, 255, 255, 0.82);
@@ -371,44 +384,50 @@ button:disabled {
 }
 
 .thank-you-mark {
-  margin: 0 auto 24px;
+  width: 64px;
+  height: 64px;
+  margin: 0 auto 16px;
   background: rgba(220, 45, 148, 0.08);
 }
 
 .thank-you-pill {
-  margin-bottom: 24px;
+  min-height: 34px;
+  margin-bottom: 16px;
+  padding: 0 22px;
+  font-size: 12px;
 }
 
 .thank-you-card h1 {
-  max-width: 680px;
-  margin: 0 auto 22px;
-  font-size: clamp(44px, 5vw, 78px);
+  max-width: 500px;
+  margin: 0 auto 16px;
+  font-size: clamp(30px, 3.2vw, 42px);
+  line-height: 1.02;
 }
 
 .thank-you-card p {
-  max-width: 620px;
+  max-width: 500px;
   margin: 0 auto;
   color: #3d4364;
-  font-size: clamp(19px, 2vw, 24px);
+  font-size: clamp(16px, 1.55vw, 18px);
   line-height: 1.45;
 }
 
 .thank-you-actions {
   display: flex;
   justify-content: center;
-  margin-top: 34px;
+  margin-top: 24px;
 }
 
 .primary-link {
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  min-height: 56px;
-  padding: 0 26px;
+  min-height: 48px;
+  padding: 0 22px;
   border-radius: 12px;
   background: var(--pink);
   color: white;
-  font-size: 18px;
+  font-size: 16px;
   font-weight: 700;
   text-decoration: none;
   transition: background 0.2s ease, transform 0.2s ease;

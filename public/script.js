@@ -32,7 +32,7 @@ if (form) {
     const data = await response.json();
 
     if (!response.ok) {
-      throw new Error(data.message || "Inscrierea nu a putut fi salvata.");
+      throw new Error(data.message || "Înscrierea nu a putut fi salvată.");
     }
 
     setStatus(data.message, "success");
@@ -43,7 +43,7 @@ if (form) {
     setStatus(error.message, "error");
   } finally {
     submitButton.disabled = false;
-    submitButton.textContent = "Ma inscriu pe lista de asteptare";
+    submitButton.textContent = "Mă înscriu pe lista de așteptare";
   }
   });
 }
