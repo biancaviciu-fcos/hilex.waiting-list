@@ -257,14 +257,26 @@ async function handleWaitlist(req, res) {
     };
 
     const result = await saveContact(contact);
-    await sendConfirmation(result.contact);
+    let confirmationSent = true;
+
+    try {
+      await sendConfirmation(result.contact);
+    } catch (emailError) {
+      confirmationSent = false;
+      console.error("Confirmation email failed:", emailError);
+    }
 
     return sendJson(res, 200, {
       ok: true,
       created: result.created,
+      confirmationSent,
       message: result.created
-        ? "Te-ai inscris cu succes. Verifica emailul pentru confirmare."
-        : "Acest email este deja pe lista. Ti-am retrimis confirmarea."
+        ? confirmationSent
+          ? "Te-ai inscris cu succes. Verifica emailul pentru confirmare."
+          : "Te-ai inscris cu succes. Emailul de confirmare va fi trimis in curand."
+        : confirmationSent
+          ? "Acest email este deja pe lista. Ti-am retrimis confirmarea."
+          : "Acest email este deja pe lista. Confirmarea va fi retrimisa in curand."
     });
   } catch (error) {
     console.error(error);
