@@ -16,10 +16,17 @@ http://127.0.0.1:4173
 
 ## Unde se salveaza contactele
 
-Contactele se salveaza in doua formate:
+Local, contactele se salveaza in doua formate:
 
 - `data/contacts.json`
 - `data/contacts.csv`
+
+In productie pe Render free, foloseste Supabase si seteaza:
+
+```bash
+SUPABASE_URL=...
+SUPABASE_SERVICE_ROLE_KEY=...
+```
 
 ## Emailuri de confirmare
 
@@ -42,21 +49,46 @@ Data lansarii pentru countdown se poate schimba cu:
 LAUNCH_DATE=2026-09-01T09:00:00+03:00
 ```
 
-## Deploy pe Render
+## Deploy pe Render free
 
-Fisierul `render.yaml` pregateste un Web Service Node.js in regiunea Frankfurt, cu disk persistent montat la `/var/data`.
+Varianta recomandata pentru Render free este Web Service manual + Supabase pentru contacte.
 
 In Render:
 
 1. Creeaza un repo GitHub cu acest proiect.
-2. In Render, alege New > Blueprint.
+2. In Render, alege New > Web Service.
 3. Conecteaza repo-ul.
-4. La variabilele cerute, completeaza `RESEND_API_KEY` si `FROM_EMAIL`.
-5. Porneste deploy-ul.
+4. Alege runtime Node.
+5. Build Command: `npm install`
+6. Start Command: `npm start`
+7. Adauga variabilele de mediu de mai jos.
 
-Contactele din productie se vor salva pe disk-ul persistent Render, in:
+Variabile obligatorii pe Render:
 
 ```text
-/var/data/contacts.csv
-/var/data/contacts.json
+HOST=0.0.0.0
+NODE_ENV=production
+SUPABASE_URL=...
+SUPABASE_SERVICE_ROLE_KEY=...
 ```
+
+Variabile recomandate:
+
+```text
+LAUNCH_DATE=2026-09-01T09:00:00+03:00
+RESEND_API_KEY=...
+FROM_EMAIL=HiLex <noreply@domeniul-tau.ro>
+```
+
+## Supabase
+
+In Supabase, deschide SQL Editor si ruleaza continutul din:
+
+```text
+supabase-schema.sql
+```
+
+Apoi copiaza din Project Settings > API:
+
+- Project URL pentru `SUPABASE_URL`
+- service_role secret pentru `SUPABASE_SERVICE_ROLE_KEY`

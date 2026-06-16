@@ -65,6 +65,10 @@ async function readContacts() {
 }
 
 async function saveContact(contact) {
+  if (process.env.SUPABASE_URL && process.env.SUPABASE_SERVICE_ROLE_KEY) {
+    return saveContactToSupabase(contact);
+  }
+
   const contacts = await readContacts();
   const existing = contacts.find((item) => normalizeEmail(item.email) === contact.email);
   if (existing) {
@@ -86,6 +90,71 @@ async function saveContact(contact) {
     ].map(csvCell).join(",") + "\n"
   );
   return { contact, created: true };
+}
+
+async function supabaseRequest(pathname, options = {}) {
+  const baseUrl = process.env.SUPABASE_URL.replace(/\/$/, "");
+  const key = process.env.SUPABASE_SERVICE_ROLE_KEY;
+  const response = await fetch(`${baseUrl}/rest/v1/${pathname}`, {
+    ...options,
+    headers: {
+      apikey: key,
+      Authorization: `Bearer ${key}`,
+      "Content-Type": "application/json",
+      ...options.headers
+    }
+  });
+
+  if (!response.ok) {
+    const message = await response.text();
+    throw new Error(`Supabase request failed: ${message}`);
+  }
+
+  if (response.status === 204) {
+    return null;
+  }
+
+  return response.json();
+}
+
+async function saveContactToSupabase(contact) {
+  const emailFilter = encodeURIComponent(contact.email);
+  const existingRows = await supabaseRequest(
+    `waitlist_contacts?email=eq.${emailFilter}&select=*`
+  );
+
+  if (existingRows.length > 0) {
+    const existing = mapSupabaseContact(existingRows[0]);
+    return { contact: existing, created: false };
+  }
+
+  const rows = await supabaseRequest("waitlist_contacts", {
+    method: "POST",
+    headers: { Prefer: "return=representation" },
+    body: JSON.stringify({
+      id: contact.id,
+      created_at: contact.createdAt,
+      first_name: contact.firstName,
+      last_name: contact.lastName,
+      email: contact.email,
+      marketing_consent: contact.marketingConsent,
+      source: contact.source
+    })
+  });
+
+  return { contact: mapSupabaseContact(rows[0]), created: true };
+}
+
+function mapSupabaseContact(row) {
+  return {
+    id: row.id,
+    createdAt: row.created_at,
+    firstName: row.first_name,
+    lastName: row.last_name,
+    email: row.email,
+    marketingConsent: row.marketing_consent,
+    source: row.source
+  };
 }
 
 function buildConfirmationEmail(contact) {
