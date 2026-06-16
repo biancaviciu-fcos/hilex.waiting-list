@@ -160,19 +160,34 @@ function mapSupabaseContact(row) {
 }
 
 function buildConfirmationEmail(contact) {
-  const name = contact.firstName || "Salut";
+  const name = escapeHtml(contact.firstName || "Salut");
   return {
-    subject: "Confirmare inscriere pe lista de asteptare HiLex",
+    subject: `${contact.firstName}, esti pe lista de asteptare HiLex`,
     html: `
-      <div style="font-family:Arial,sans-serif;color:#11163a;line-height:1.6;max-width:620px">
-        <h1 style="color:#11163a">Esti pe lista de asteptare HiLex.</h1>
-        <p>Buna, ${escapeHtml(name)},</p>
-        <p>Iti confirmam ca inscrierea ta a fost inregistrata. Te vom anunta cand HiLex Individuals este gata de lansare.</p>
-        <p style="color:#6b708c">Situatii reale. Explicatii clare. Acces rapid la informatia juridica de care ai nevoie.</p>
-        <p>Echipa HiLex</p>
+      <div style="margin:0;padding:0;background:#f7f6fb;font-family:Arial,sans-serif;color:#10143d">
+        <div style="max-width:640px;margin:0 auto;padding:36px 18px">
+          <div style="background:#ffffff;border:1px solid #e7e4f0;border-radius:18px;overflow:hidden">
+            <div style="padding:28px 32px;background:#11186a;color:#ffffff">
+              <div style="font-size:34px;font-weight:800;letter-spacing:0">Hi<span style="color:#dc2d94">Lex</span></div>
+              <div style="margin-top:8px;color:#f5c4df;font-size:12px;font-weight:700;letter-spacing:5px">INDIVIDUALS</div>
+            </div>
+            <div style="padding:34px 32px;line-height:1.65">
+              <p style="margin:0 0 12px;color:#dc2d94;font-weight:700">Inscriere confirmata</p>
+              <h1 style="margin:0 0 22px;color:#11163a;font-size:32px;line-height:1.15">Buna, ${name}. Esti pe lista de asteptare HiLex.</h1>
+              <p style="margin:0 0 18px;font-size:17px">Iti confirmam ca inscrierea ta a fost inregistrata. Te vom anunta cand HiLex Individuals este gata de lansare.</p>
+              <p style="margin:0 0 22px;font-size:17px">Pregatim un loc in care informatia juridica este explicata clar, pentru situatii reale din viata de zi cu zi.</p>
+              <div style="margin:26px 0;padding:20px;border-radius:14px;background:#f4f3fb;color:#343958">
+                <strong style="display:block;margin-bottom:8px;color:#11163a">Ce urmeaza?</strong>
+                Vei primi noutati despre lansare, acces prioritar si update-uri despre HiLex Individuals.
+              </div>
+              <p style="margin:0;color:#6b708c">Situatii reale. Explicatii clare. Acces rapid la informatia juridica de care ai nevoie.</p>
+              <p style="margin:26px 0 0">Cu drag,<br />Echipa HiLex</p>
+            </div>
+          </div>
+        </div>
       </div>
     `,
-    text: `Buna, ${name}!\n\nIti confirmam ca inscrierea ta pe lista de asteptare HiLex a fost inregistrata.\nTe vom anunta cand HiLex Individuals este gata de lansare.\n\nEchipa HiLex`
+    text: `Buna, ${contact.firstName || ""}!\n\nEsti pe lista de asteptare HiLex.\n\nIti confirmam ca inscrierea ta a fost inregistrata. Te vom anunta cand HiLex Individuals este gata de lansare.\n\nPregatim un loc in care informatia juridica este explicata clar, pentru situatii reale din viata de zi cu zi.\n\nCu drag,\nEchipa HiLex`
   };
 }
 

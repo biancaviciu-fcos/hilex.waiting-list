@@ -344,6 +344,81 @@ button:disabled {
   transform: none;
 }
 
+.thank-you-shell {
+  display: grid;
+  place-items: center;
+}
+
+.thank-you-view {
+  display: grid;
+  justify-items: center;
+  gap: 30px;
+  width: min(100%, 860px);
+}
+
+.thank-you-brand {
+  position: static;
+}
+
+.thank-you-card {
+  width: min(100%, 760px);
+  padding: clamp(34px, 5vw, 64px);
+  border: 1px solid rgba(17, 24, 106, 0.08);
+  border-radius: 24px;
+  background: rgba(255, 255, 255, 0.82);
+  box-shadow: 0 28px 80px rgba(24, 27, 74, 0.12);
+  text-align: center;
+}
+
+.thank-you-mark {
+  margin: 0 auto 24px;
+  background: rgba(220, 45, 148, 0.08);
+}
+
+.thank-you-pill {
+  margin-bottom: 24px;
+}
+
+.thank-you-card h1 {
+  max-width: 680px;
+  margin: 0 auto 22px;
+  font-size: clamp(44px, 5vw, 78px);
+}
+
+.thank-you-card p {
+  max-width: 620px;
+  margin: 0 auto;
+  color: #3d4364;
+  font-size: clamp(19px, 2vw, 24px);
+  line-height: 1.45;
+}
+
+.thank-you-actions {
+  display: flex;
+  justify-content: center;
+  margin-top: 34px;
+}
+
+.primary-link {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 56px;
+  padding: 0 26px;
+  border-radius: 12px;
+  background: var(--pink);
+  color: white;
+  font-size: 18px;
+  font-weight: 700;
+  text-decoration: none;
+  transition: background 0.2s ease, transform 0.2s ease;
+}
+
+.primary-link:hover {
+  background: var(--pink-dark);
+  transform: translateY(-1px);
+}
+
 .form-status {
   min-height: 24px;
   margin: 0;

@@ -1,6 +1,6 @@
 const form = document.querySelector("#waitlistForm");
-const status = document.querySelector("#formStatus");
-const submitButton = form.querySelector("button");
+const status = form ? document.querySelector("#formStatus") : null;
+const submitButton = form ? form.querySelector("button") : null;
 const shell = document.querySelector(".page-shell");
 
 function setStatus(message, type) {
@@ -8,7 +8,8 @@ function setStatus(message, type) {
   status.className = `form-status ${type || ""}`.trim();
 }
 
-form.addEventListener("submit", async (event) => {
+if (form) {
+  form.addEventListener("submit", async (event) => {
   event.preventDefault();
   setStatus("", "");
   submitButton.disabled = true;
@@ -35,14 +36,17 @@ form.addEventListener("submit", async (event) => {
     }
 
     setStatus(data.message, "success");
+    sessionStorage.setItem("hilexWaitlistName", String(payload.firstName || ""));
     form.reset();
+    window.location.href = "/thank-you.html";
   } catch (error) {
     setStatus(error.message, "error");
   } finally {
     submitButton.disabled = false;
     submitButton.textContent = "Ma inscriu pe lista de asteptare";
   }
-});
+  });
+}
 
 const launchDate = new Date(shell.dataset.launchDate);
 const fields = {
@@ -51,6 +55,14 @@ const fields = {
   minutes: document.querySelector("#minutes"),
   seconds: document.querySelector("#seconds")
 };
+
+const thankYouName = document.querySelector("#thankYouName");
+if (thankYouName) {
+  const storedName = sessionStorage.getItem("hilexWaitlistName");
+  if (storedName) {
+    thankYouName.textContent = `, ${storedName}`;
+  }
+}
 
 function pad(value) {
   return String(value).padStart(2, "0");
@@ -70,5 +82,7 @@ function tickCountdown() {
   fields.seconds.textContent = pad(remainder);
 }
 
-tickCountdown();
-setInterval(tickCountdown, 1000);
+if (Object.values(fields).every(Boolean)) {
+  tickCountdown();
+  setInterval(tickCountdown, 1000);
+}
