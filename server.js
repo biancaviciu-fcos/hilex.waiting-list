@@ -168,11 +168,11 @@ function buildConfirmationEmail(contact) {
         <div style="max-width:640px;margin:0 auto;padding:36px 18px">
           <div style="background:#ffffff;border:1px solid #e7e4f0;border-radius:18px;overflow:hidden">
             <div style="padding:28px 32px;background:#11186a;color:#ffffff">
-              <div style="font-size:34px;font-weight:800;letter-spacing:0">Hi<span style="color:#dc2d94">Lex</span></div>
+              <div style="font-size:34px;font-weight:800;letter-spacing:0">Hi<span style="color:#c9037b">Lex</span></div>
               <div style="margin-top:8px;color:#f5c4df;font-size:12px;font-weight:700;letter-spacing:5px">INDIVIDUALS</div>
             </div>
             <div style="padding:34px 32px;line-height:1.65">
-              <p style="margin:0 0 12px;color:#dc2d94;font-weight:700">Înscriere confirmată</p>
+              <p style="margin:0 0 12px;color:#c9037b;font-weight:700">Înscriere confirmată</p>
               <h1 style="margin:0 0 22px;color:#11163a;font-size:32px;line-height:1.15">Bună, ${name}. Ești pe lista de așteptare HiLex.</h1>
               <p style="margin:0 0 18px;font-size:17px">Îți confirmăm că înscrierea ta a fost înregistrată. Te vom anunța când HiLex Individuals este gata de lansare.</p>
               <p style="margin:0 0 22px;font-size:17px">Pregătim un loc în care informația juridică este explicată clar, pentru situații reale din viața de zi cu zi.</p>
@@ -180,7 +180,7 @@ function buildConfirmationEmail(contact) {
                 <strong style="display:block;margin-bottom:8px;color:#11163a">Ce urmează?</strong>
                 Vei primi noutăți despre lansare, acces prioritar și update-uri despre HiLex Individuals.
               </div>
-              <p style="margin:0;color:#6b708c">Situații reale. Explicații clare. Acces rapid la informația juridică de care ai nevoie.</p>
+              <p style="margin:0;color:#6b708c">Situații reale. Explicații clare. Acces la informația juridică atunci când contează.</p>
               <p style="margin:26px 0 0">Cu drag,<br />Echipa HiLex</p>
             </div>
           </div>
@@ -215,15 +215,15 @@ function buildInternalNotificationEmail(contact, created) {
         <div style="max-width:620px;margin:0 auto;padding:32px 18px">
           <div style="background:#ffffff;border:1px solid #e7e4f0;border-radius:18px;overflow:hidden">
             <div style="padding:24px 28px;background:#11186a;color:#ffffff">
-              <div style="font-size:30px;font-weight:800;letter-spacing:0">Hi<span style="color:#dc2d94">Lex</span></div>
+              <div style="font-size:30px;font-weight:800;letter-spacing:0">Hi<span style="color:#c9037b">Lex</span></div>
               <div style="margin-top:8px;color:#f5c4df;font-size:12px;font-weight:700;letter-spacing:4px">WAITLIST</div>
             </div>
             <div style="padding:30px 28px;line-height:1.6">
-              <p style="margin:0 0 10px;color:#dc2d94;font-weight:700">${notificationType}</p>
+              <p style="margin:0 0 10px;color:#c9037b;font-weight:700">${notificationType}</p>
               <h1 style="margin:0 0 20px;color:#11163a;font-size:28px;line-height:1.18">${notificationTitle}</h1>
               <div style="margin:0 0 22px;padding:18px;border-radius:14px;background:#f4f3fb;color:#343958">
                 <p style="margin:0 0 8px"><strong>Nume:</strong> ${firstName} ${lastName}</p>
-                <p style="margin:0 0 8px"><strong>Email:</strong> <a href="mailto:${email}" style="color:#dc2d94">${email}</a></p>
+                <p style="margin:0 0 8px"><strong>Email:</strong> <a href="mailto:${email}" style="color:#c9037b">${email}</a></p>
                 <p style="margin:0 0 8px"><strong>Dată:</strong> ${createdAt}</p>
                 <p style="margin:0"><strong>Acord marketing:</strong> ${contact.marketingConsent ? "Da" : "Nu"}</p>
               </div>

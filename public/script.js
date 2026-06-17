@@ -43,7 +43,7 @@ if (form) {
     setStatus(error.message, "error");
   } finally {
     submitButton.disabled = false;
-    submitButton.textContent = "Mă înscriu pe lista de așteptare";
+    submitButton.textContent = "Îmi rezerv locul!";
   }
   });
 }
