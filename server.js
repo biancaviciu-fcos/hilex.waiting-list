@@ -191,6 +191,45 @@ function buildConfirmationEmail(contact) {
   };
 }
 
+function buildInternalNotificationEmail(contact) {
+  const firstName = escapeHtml(contact.firstName);
+  const lastName = escapeHtml(contact.lastName);
+  const email = escapeHtml(contact.email);
+  const createdAt = new Date(contact.createdAt).toLocaleString("ro-RO", {
+    timeZone: "Europe/Bucharest",
+    dateStyle: "medium",
+    timeStyle: "short"
+  });
+
+  return {
+    subject: `Înscriere nouă pe lista HiLex: ${contact.firstName} ${contact.lastName}`,
+    html: `
+      <div style="margin:0;padding:0;background:#f7f6fb;font-family:Arial,sans-serif;color:#10143d">
+        <div style="max-width:620px;margin:0 auto;padding:32px 18px">
+          <div style="background:#ffffff;border:1px solid #e7e4f0;border-radius:18px;overflow:hidden">
+            <div style="padding:24px 28px;background:#11186a;color:#ffffff">
+              <div style="font-size:30px;font-weight:800;letter-spacing:0">Hi<span style="color:#dc2d94">Lex</span></div>
+              <div style="margin-top:8px;color:#f5c4df;font-size:12px;font-weight:700;letter-spacing:4px">WAITLIST</div>
+            </div>
+            <div style="padding:30px 28px;line-height:1.6">
+              <p style="margin:0 0 10px;color:#dc2d94;font-weight:700">Înscriere nouă</p>
+              <h1 style="margin:0 0 20px;color:#11163a;font-size:28px;line-height:1.18">${firstName} ${lastName} s-a înscris pe lista de așteptare.</h1>
+              <div style="margin:0 0 22px;padding:18px;border-radius:14px;background:#f4f3fb;color:#343958">
+                <p style="margin:0 0 8px"><strong>Nume:</strong> ${firstName} ${lastName}</p>
+                <p style="margin:0 0 8px"><strong>Email:</strong> <a href="mailto:${email}" style="color:#dc2d94">${email}</a></p>
+                <p style="margin:0 0 8px"><strong>Dată:</strong> ${createdAt}</p>
+                <p style="margin:0"><strong>Acord marketing:</strong> ${contact.marketingConsent ? "Da" : "Nu"}</p>
+              </div>
+              <p style="margin:0;color:#6b708c">Contactul a fost salvat în lista HiLex Individuals.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    `,
+    text: `Înscriere nouă pe lista HiLex\n\nNume: ${contact.firstName} ${contact.lastName}\nEmail: ${contact.email}\nDată: ${createdAt}\nAcord marketing: ${contact.marketingConsent ? "Da" : "Nu"}\n\nContactul a fost salvat în lista HiLex Individuals.`
+  };
+}
+
 function escapeHtml(value) {
   return String(value).replace(/[&<>"']/g, (char) => ({
     "&": "&amp;",
@@ -201,8 +240,14 @@ function escapeHtml(value) {
   })[char]);
 }
 
-async function sendConfirmation(contact) {
-  const email = buildConfirmationEmail(contact);
+function getNotificationEmails() {
+  return String(process.env.NOTIFICATION_EMAILS || "")
+    .split(",")
+    .map((email) => email.trim())
+    .filter(Boolean);
+}
+
+async function deliverEmail(email, to, label) {
   const from = process.env.FROM_EMAIL || "HiLex <noreply@example.com>";
 
   if (process.env.RESEND_API_KEY) {
@@ -214,7 +259,7 @@ async function sendConfirmation(contact) {
       },
       body: JSON.stringify({
         from,
-        to: contact.email,
+        to,
         subject: email.subject,
         html: email.html,
         text: email.text
@@ -228,12 +273,34 @@ async function sendConfirmation(contact) {
     return { mode: "resend" };
   }
 
-  const outboxPath = path.join(outboxDir, `${contact.createdAt.replaceAll(":", "-")}-${contact.id}.json`);
+  await ensureStorage();
+  const outboxPath = path.join(
+    outboxDir,
+    `${new Date().toISOString().replaceAll(":", "-")}-${crypto.randomUUID()}-${label}.json`
+  );
   await fs.writeFile(
     outboxPath,
-    `${JSON.stringify({ from, to: contact.email, ...email }, null, 2)}\n`
+    `${JSON.stringify({ from, to, ...email }, null, 2)}\n`
   );
   return { mode: "outbox", path: outboxPath };
+}
+
+async function sendConfirmation(contact) {
+  return deliverEmail(buildConfirmationEmail(contact), contact.email, `${contact.id}-confirmation`);
+}
+
+async function sendInternalNotification(contact) {
+  const recipients = getNotificationEmails();
+  if (recipients.length === 0) {
+    return { mode: "skipped" };
+  }
+
+  const email = buildInternalNotificationEmail(contact);
+  const results = [];
+  for (const recipient of recipients) {
+    results.push(await deliverEmail(email, recipient, `${contact.id}-internal-notification`));
+  }
+  return { mode: "sent", results };
 }
 
 async function parseBody(req) {
@@ -275,6 +342,7 @@ async function handleWaitlist(req, res) {
 
     const result = await saveContact(contact);
     let confirmationSent = true;
+    let internalNotificationSent = true;
 
     try {
       await sendConfirmation(result.contact);
@@ -283,10 +351,21 @@ async function handleWaitlist(req, res) {
       console.error("Confirmation email failed:", emailError);
     }
 
+    if (result.created) {
+      try {
+        const notificationResult = await sendInternalNotification(result.contact);
+        internalNotificationSent = notificationResult.mode !== "skipped";
+      } catch (emailError) {
+        internalNotificationSent = false;
+        console.error("Internal notification email failed:", emailError);
+      }
+    }
+
     return sendJson(res, 200, {
       ok: true,
       created: result.created,
       confirmationSent,
+      internalNotificationSent,
       message: result.created
         ? confirmationSent
           ? "Te-ai înscris cu succes. Verifică emailul pentru confirmare."

@@ -24,24 +24,29 @@ Local, contactele se salveaza in doua formate:
 In productie pe Render free, foloseste Supabase si seteaza:
 
 ```bash
-SUPABASE_URL=...
+SUPABASE_URL=https://xxxxx.supabase.co
 SUPABASE_SERVICE_ROLE_KEY=...
 ```
 
 ## Emailuri de confirmare
 
-Local, daca nu exista o cheie de email configurata, confirmarea este salvata in:
+Local, dacă nu există o cheie de email configurată, confirmarea este salvată în:
 
 ```text
 data/email-outbox
 ```
 
-Pentru trimitere reala prin Resend, seteaza variabilele:
+Pentru trimitere reală prin Resend, setează variabilele:
 
 ```bash
 RESEND_API_KEY=...
 FROM_EMAIL="HiLex <noreply@domeniul-tau.ro>"
+NOTIFICATION_EMAILS="echipa@domeniul-tau.ro"
 ```
+
+`NOTIFICATION_EMAILS` este opțional și poate conține una sau mai multe adrese,
+separate prin virgulă. Aceste adrese primesc o notificare internă atunci când
+un contact nou se înscrie pe lista de așteptare.
 
 Data lansarii pentru countdown se poate schimba cu:
 
@@ -72,12 +77,15 @@ SUPABASE_URL=...
 SUPABASE_SERVICE_ROLE_KEY=...
 ```
 
+`SUPABASE_URL` trebuie sa fie Project URL simplu, fara `/rest/v1` la final.
+
 Variabile recomandate:
 
 ```text
 LAUNCH_DATE=2026-09-01T09:00:00+03:00
 RESEND_API_KEY=...
 FROM_EMAIL=HiLex <noreply@domeniul-tau.ro>
+NOTIFICATION_EMAILS=echipa@domeniul-tau.ro
 ```
 
 ## Supabase
