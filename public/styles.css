@@ -1,10 +1,11 @@
 :root {
-  --ink: #090e30;
+  --ink: #070b2d;
   --navy: #11186a;
-  --navy-deep: #070c35;
-  --navy-soft: #e8ebf8;
-  --muted: #69708e;
-  --line: #dfe2ef;
+  --navy-deep: #03082c;
+  --navy-mid: #0b124f;
+  --navy-soft: #e6eaf7;
+  --muted: #c4c9de;
+  --line: #d8deef;
   --pink: #c9037b;
   --pink-dark: #a90268;
   --panel: #ffffffd9;
@@ -22,48 +23,49 @@ body {
   min-height: 100vh;
   color: var(--ink);
   font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
-  background: #dfe5f6;
+  background: #f3f5fb;
 }
 
 body::selection {
-  background: rgba(17, 24, 106, 0.22);
+  background: rgba(201, 3, 123, 0.34);
 }
 
 body::before {
   position: fixed;
   inset: 0;
   z-index: -2;
-  background:
-    linear-gradient(90deg, rgba(255, 255, 255, 0.9) 0%, rgba(222, 228, 246, 0.9) 42%, rgba(151, 164, 213, 0.86) 100%),
-    linear-gradient(180deg, rgba(7, 12, 53, 0.22), rgba(17, 24, 106, 0.42)),
-    url("/hero-bg.png") center / cover no-repeat;
+  background: #f3f5fb;
   content: "";
 }
 
 body::after {
   position: fixed;
-  inset: 0;
-  z-index: -1;
-  background:
-    radial-gradient(circle at 84% 16%, rgba(17, 24, 106, 0.26), rgba(17, 24, 106, 0) 32%),
-    linear-gradient(12deg, rgba(7, 12, 53, 0.58), rgba(17, 24, 106, 0.22) 46%, rgba(255, 255, 255, 0) 78%);
+  inset: 0 0 auto;
+  z-index: 1;
+  height: 86px;
+  border-bottom: 1px solid #e4e8f2;
+  background: #ffffff;
   content: "";
   pointer-events: none;
 }
 
 .page-shell {
   min-height: 100vh;
-  padding: clamp(22px, 2.6vw, 44px);
+  padding: 86px 0 0;
 }
 
 .hero {
   display: grid;
   grid-template-columns: minmax(600px, 1.03fr) minmax(400px, 0.9fr);
-  gap: clamp(30px, 3.8vw, 58px);
+  gap: clamp(36px, 4vw, 72px);
   align-items: center;
-  max-width: 1500px;
-  min-height: calc(100vh - clamp(44px, 5.2vw, 88px));
-  margin: 0 auto;
+  max-width: none;
+  min-height: calc(100vh - 86px);
+  margin: 0;
+  padding: clamp(58px, 6vw, 92px) max(34px, calc((100vw - 1500px) / 2)) clamp(46px, 5vw, 74px);
+  background:
+    linear-gradient(115deg, rgba(3, 8, 44, 0.98), rgba(8, 15, 68, 0.98) 52%, rgba(17, 24, 106, 0.98)),
+    url("/hero-bg.png") center / cover no-repeat;
 }
 
 .pill {
@@ -73,10 +75,10 @@ body::after {
   min-height: 42px;
   margin: 0 0 34px;
   padding: 0 28px;
-  border: 1px solid rgba(17, 24, 106, 0.2);
+  border: 1px solid rgba(255, 255, 255, 0.22);
   border-radius: 999px;
-  background: rgba(255, 255, 255, 0.72);
-  color: #20245d;
+  background: rgba(255, 255, 255, 0.08);
+  color: #f2f4ff;
   font-size: 14px;
   font-weight: 800;
   letter-spacing: 0;
@@ -99,6 +101,7 @@ h1 {
   font-size: clamp(40px, 3.35vw, 64px);
   line-height: 0.95;
   letter-spacing: 0;
+  color: #ffffff;
 }
 
 h1 span,
@@ -111,12 +114,13 @@ h1 span,
   margin: 26px 0 8px;
   font-size: clamp(21px, 1.45vw, 25px);
   font-weight: 700;
+  color: #ffffff;
 }
 
 .lead {
   max-width: 600px;
   margin: 0 0 32px;
-  color: var(--muted);
+  color: #d6daec;
   font-size: clamp(18px, 1.35vw, 22px);
   line-height: 1.38;
 }
@@ -133,10 +137,10 @@ h1 span,
   justify-items: center;
   min-height: 198px;
   padding: 24px 20px 22px;
-  border: 1px solid rgba(17, 24, 106, 0.08);
-  border-radius: 18px;
-  background: rgba(255, 255, 255, 0.78);
-  box-shadow: 0 18px 48px rgba(17, 24, 106, 0.1);
+  border: 1px solid #e1e6f2;
+  border-radius: 8px;
+  background: #ffffff;
+  box-shadow: 0 18px 46px rgba(0, 0, 0, 0.22);
   text-align: center;
 }
 
@@ -146,7 +150,7 @@ h1 span,
   width: 66px;
   height: 66px;
   border-radius: 50%;
-  background: #eeedf4;
+  background: #e9edf8;
   color: var(--navy);
 }
 
@@ -166,10 +170,10 @@ h1 span,
 .countdown {
   max-width: 720px;
   padding: 24px 30px;
-  border: 1px solid rgba(17, 24, 106, 0.08);
-  border-radius: 20px;
-  background: rgba(255, 255, 255, 0.82);
-  box-shadow: 0 20px 48px rgba(17, 24, 106, 0.1);
+  border: 1px solid #e1e6f2;
+  border-radius: 8px;
+  background: #ffffff;
+  box-shadow: 0 20px 48px rgba(0, 0, 0, 0.22);
   text-align: center;
 }
 
@@ -183,7 +187,7 @@ h1 span,
   display: grid;
   grid-template-columns: repeat(4, minmax(0, 1fr));
   overflow: hidden;
-  background: rgba(255, 255, 255, 0.82);
+  background: #ffffff;
 }
 
 .time-grid div {
@@ -220,28 +224,24 @@ h1 span,
 }
 
 .brand {
-  position: absolute;
-  top: 0;
-  right: 0;
+  position: fixed;
+  top: 24px;
+  left: max(28px, calc((100vw - 1920px) / 2 + 34px));
+  right: auto;
+  z-index: 2;
   display: grid;
-  justify-items: center;
-  color: var(--ink);
+  justify-items: start;
+  color: var(--navy-deep);
   text-decoration: none;
 }
 
 .brand strong {
-  font-size: clamp(52px, 5.2vw, 86px);
-  line-height: 0.8;
+  font-size: clamp(30px, 3vw, 40px);
+  line-height: 1;
 }
 
 .brand small {
-  margin-top: 18px;
-  padding-top: 12px;
-  border-top: 3px solid var(--pink);
-  color: var(--pink);
-  font-size: 16px;
-  font-weight: 900;
-  letter-spacing: 10px;
+  display: none;
 }
 
 .mail-mark {
@@ -249,11 +249,11 @@ h1 span,
   place-items: center;
   width: 92px;
   height: 92px;
-  margin: 30px auto 22px;
-  border: 2px solid rgba(201, 3, 123, 0.14);
+  margin: 0 auto 22px;
+  border: 2px solid rgba(201, 3, 123, 0.3);
   border-radius: 50%;
   color: var(--pink);
-  background: rgba(255, 255, 255, 0.26);
+  background: rgba(255, 255, 255, 0.08);
 }
 
 .panel-heading {
@@ -262,6 +262,7 @@ h1 span,
 
 .panel-heading h2 {
   margin: 0;
+  color: #ffffff;
   font-size: clamp(30px, 2.55vw, 40px);
   line-height: 1.12;
   font-weight: 500;
@@ -269,7 +270,7 @@ h1 span,
 
 .panel-heading p {
   margin: 10px 0 28px;
-  color: #7b8199;
+  color: #d4d8ec;
   font-size: 20px;
 }
 
@@ -279,9 +280,10 @@ h1 span,
   width: min(100%, 600px);
   margin: 0 auto;
   padding: 42px 40px;
-  border-radius: 24px;
-  background: var(--navy);
-  box-shadow: 0 24px 70px rgba(7, 11, 58, 0.22);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 8px;
+  background: rgba(7, 12, 53, 0.94);
+  box-shadow: 0 24px 70px rgba(0, 0, 0, 0.28);
 }
 
 .waitlist-form label:not(.consent) span {
@@ -299,7 +301,7 @@ input[type="email"] {
   min-height: 68px;
   padding: 0 28px;
   border: 2px solid transparent;
-  border-radius: 12px;
+  border-radius: 8px;
   color: var(--ink);
   font-family: Georgia, "Times New Roman", serif;
   font-size: 19px;
@@ -332,7 +334,7 @@ input:focus {
 button {
   min-height: 60px;
   border: 0;
-  border-radius: 12px;
+  border-radius: 8px;
   background: var(--pink);
   color: white;
   font-size: clamp(17px, 1.7vw, 21px);
@@ -355,7 +357,7 @@ button:disabled {
 .thank-you-shell {
   display: grid;
   place-items: center;
-  padding-top: clamp(22px, 3vw, 42px);
+  padding-top: 118px;
   padding-bottom: clamp(22px, 3vw, 42px);
 }
 
@@ -367,11 +369,11 @@ button:disabled {
 }
 
 .thank-you-brand {
-  position: static;
+  position: fixed;
 }
 
 .thank-you-brand strong {
-  font-size: clamp(44px, 4.8vw, 62px);
+  font-size: clamp(30px, 3vw, 40px);
 }
 
 .thank-you-brand small {
@@ -385,9 +387,9 @@ button:disabled {
   width: min(100%, 600px);
   padding: clamp(26px, 3.4vw, 38px);
   border: 1px solid rgba(17, 24, 106, 0.08);
-  border-radius: 24px;
-  background: rgba(255, 255, 255, 0.86);
-  box-shadow: 0 28px 80px rgba(17, 24, 106, 0.14);
+  border-radius: 8px;
+  background: rgba(248, 250, 255, 0.96);
+  box-shadow: 0 28px 80px rgba(0, 0, 0, 0.24);
   text-align: center;
 }
 
@@ -408,6 +410,7 @@ button:disabled {
 .thank-you-card h1 {
   max-width: 500px;
   margin: 0 auto 16px;
+  color: var(--ink);
   font-size: clamp(30px, 3.2vw, 42px);
   line-height: 1.02;
 }
@@ -432,7 +435,7 @@ button:disabled {
   justify-content: center;
   min-height: 48px;
   padding: 0 22px;
-  border-radius: 12px;
+  border-radius: 8px;
   background: var(--pink);
   color: white;
   font-size: 16px;
@@ -474,14 +477,17 @@ button:disabled {
   }
 
   .brand {
-    position: static;
-    margin-bottom: 16px;
+    margin-bottom: 0;
   }
 }
 
 @media (max-width: 760px) {
   .page-shell {
-    padding: 22px;
+    padding: 78px 0 0;
+  }
+
+  body::after {
+    height: 78px;
   }
 
   .hero {
@@ -489,6 +495,7 @@ button:disabled {
     flex-direction: column;
     gap: 26px;
     min-height: auto;
+    padding: 34px 22px 44px;
   }
 
   .hero-copy {
@@ -569,6 +576,8 @@ button:disabled {
     align-self: flex-start;
     justify-items: start;
     margin-bottom: 0;
+    top: 24px;
+    left: 22px;
   }
 
   .brand small {
