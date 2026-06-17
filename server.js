@@ -16,7 +16,7 @@ const outboxDir = path.join(dataDir, "email-outbox");
 
 const PORT = Number(process.env.PORT || 4173);
 const HOST = process.env.HOST || "127.0.0.1";
-const launchDate = process.env.LAUNCH_DATE || "2026-09-01T09:00:00+03:00";
+const launchDate = process.env.LAUNCH_DATE || "2026-06-26T14:00:00+01:00";
 
 const mimeTypes = {
   ".html": "text/html; charset=utf-8",
@@ -191,10 +191,17 @@ function buildConfirmationEmail(contact) {
   };
 }
 
-function buildInternalNotificationEmail(contact) {
+function buildInternalNotificationEmail(contact, created) {
   const firstName = escapeHtml(contact.firstName);
   const lastName = escapeHtml(contact.lastName);
   const email = escapeHtml(contact.email);
+  const notificationType = created ? "Înscriere nouă" : "Formular retrimis";
+  const notificationTitle = created
+    ? `${firstName} ${lastName} s-a înscris pe lista de așteptare.`
+    : `${firstName} ${lastName} a retrimis formularul de așteptare.`;
+  const footer = created
+    ? "Contactul a fost salvat în lista HiLex Individuals."
+    : "Contactul există deja în lista HiLex Individuals.";
   const createdAt = new Date(contact.createdAt).toLocaleString("ro-RO", {
     timeZone: "Europe/Bucharest",
     dateStyle: "medium",
@@ -202,7 +209,7 @@ function buildInternalNotificationEmail(contact) {
   });
 
   return {
-    subject: `Înscriere nouă pe lista HiLex: ${contact.firstName} ${contact.lastName}`,
+    subject: `${notificationType} pe lista HiLex: ${contact.firstName} ${contact.lastName}`,
     html: `
       <div style="margin:0;padding:0;background:#f7f6fb;font-family:Arial,sans-serif;color:#10143d">
         <div style="max-width:620px;margin:0 auto;padding:32px 18px">
@@ -212,21 +219,21 @@ function buildInternalNotificationEmail(contact) {
               <div style="margin-top:8px;color:#f5c4df;font-size:12px;font-weight:700;letter-spacing:4px">WAITLIST</div>
             </div>
             <div style="padding:30px 28px;line-height:1.6">
-              <p style="margin:0 0 10px;color:#dc2d94;font-weight:700">Înscriere nouă</p>
-              <h1 style="margin:0 0 20px;color:#11163a;font-size:28px;line-height:1.18">${firstName} ${lastName} s-a înscris pe lista de așteptare.</h1>
+              <p style="margin:0 0 10px;color:#dc2d94;font-weight:700">${notificationType}</p>
+              <h1 style="margin:0 0 20px;color:#11163a;font-size:28px;line-height:1.18">${notificationTitle}</h1>
               <div style="margin:0 0 22px;padding:18px;border-radius:14px;background:#f4f3fb;color:#343958">
                 <p style="margin:0 0 8px"><strong>Nume:</strong> ${firstName} ${lastName}</p>
                 <p style="margin:0 0 8px"><strong>Email:</strong> <a href="mailto:${email}" style="color:#dc2d94">${email}</a></p>
                 <p style="margin:0 0 8px"><strong>Dată:</strong> ${createdAt}</p>
                 <p style="margin:0"><strong>Acord marketing:</strong> ${contact.marketingConsent ? "Da" : "Nu"}</p>
               </div>
-              <p style="margin:0;color:#6b708c">Contactul a fost salvat în lista HiLex Individuals.</p>
+              <p style="margin:0;color:#6b708c">${footer}</p>
             </div>
           </div>
         </div>
       </div>
     `,
-    text: `Înscriere nouă pe lista HiLex\n\nNume: ${contact.firstName} ${contact.lastName}\nEmail: ${contact.email}\nDată: ${createdAt}\nAcord marketing: ${contact.marketingConsent ? "Da" : "Nu"}\n\nContactul a fost salvat în lista HiLex Individuals.`
+    text: `${notificationType} pe lista HiLex\n\nNume: ${contact.firstName} ${contact.lastName}\nEmail: ${contact.email}\nDată: ${createdAt}\nAcord marketing: ${contact.marketingConsent ? "Da" : "Nu"}\n\n${footer}`
   };
 }
 
@@ -289,13 +296,13 @@ async function sendConfirmation(contact) {
   return deliverEmail(buildConfirmationEmail(contact), contact.email, `${contact.id}-confirmation`);
 }
 
-async function sendInternalNotification(contact) {
+async function sendInternalNotification(contact, created) {
   const recipients = getNotificationEmails();
   if (recipients.length === 0) {
     return { mode: "skipped" };
   }
 
-  const email = buildInternalNotificationEmail(contact);
+  const email = buildInternalNotificationEmail(contact, created);
   const results = [];
   for (const recipient of recipients) {
     results.push(await deliverEmail(email, recipient, `${contact.id}-internal-notification`));
@@ -351,14 +358,12 @@ async function handleWaitlist(req, res) {
       console.error("Confirmation email failed:", emailError);
     }
 
-    if (result.created) {
-      try {
-        const notificationResult = await sendInternalNotification(result.contact);
-        internalNotificationSent = notificationResult.mode !== "skipped";
-      } catch (emailError) {
-        internalNotificationSent = false;
-        console.error("Internal notification email failed:", emailError);
-      }
+    try {
+      const notificationResult = await sendInternalNotification(result.contact, result.created);
+      internalNotificationSent = notificationResult.mode !== "skipped";
+    } catch (emailError) {
+      internalNotificationSent = false;
+      console.error("Internal notification email failed:", emailError);
     }
 
     return sendJson(res, 200, {

@@ -493,23 +493,42 @@ button:disabled {
     margin-bottom: 26px;
   }
 
-  .feature-grid,
-  .time-grid {
+  .feature-grid {
     grid-template-columns: 1fr;
+  }
+
+  .countdown {
+    padding: 22px 16px;
+  }
+
+  .countdown p {
+    font-size: 19px;
+  }
+
+  .time-grid {
+    grid-template-columns: repeat(4, minmax(0, 1fr));
   }
 
   .feature-card {
     min-height: auto;
   }
 
-  .time-grid div,
-  .time-grid div:first-child {
-    border-top: 1px solid var(--line);
-    border-left: 0;
+  .time-grid div {
+    min-height: 70px;
+    border-top: 0;
+    border-left: 1px solid var(--line);
   }
 
   .time-grid div:first-child {
-    border-top: 0;
+    border-left: 0;
+  }
+
+  .time-grid strong {
+    font-size: clamp(24px, 8vw, 34px);
+  }
+
+  .time-grid small {
+    font-size: clamp(11px, 3.2vw, 14px);
   }
 
   .brand {

@@ -46,12 +46,12 @@ NOTIFICATION_EMAILS="echipa@domeniul-tau.ro"
 
 `NOTIFICATION_EMAILS` este opțional și poate conține una sau mai multe adrese,
 separate prin virgulă. Aceste adrese primesc o notificare internă atunci când
-un contact nou se înscrie pe lista de așteptare.
+un contact trimite formularul de așteptare, inclusiv dacă emailul există deja.
 
 Data lansarii pentru countdown se poate schimba cu:
 
 ```bash
-LAUNCH_DATE=2026-09-01T09:00:00+03:00
+LAUNCH_DATE=2026-06-26T14:00:00+01:00
 ```
 
 ## Deploy pe Render free
@@ -82,7 +82,7 @@ SUPABASE_SERVICE_ROLE_KEY=...
 Variabile recomandate:
 
 ```text
-LAUNCH_DATE=2026-09-01T09:00:00+03:00
+LAUNCH_DATE=2026-06-26T14:00:00+01:00
 RESEND_API_KEY=...
 FROM_EMAIL=HiLex <noreply@domeniul-tau.ro>
 NOTIFICATION_EMAILS=echipa@domeniul-tau.ro
