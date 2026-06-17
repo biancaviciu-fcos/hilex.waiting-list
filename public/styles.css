@@ -64,8 +64,8 @@ body::after {
   margin: 0;
   padding: clamp(58px, 6vw, 92px) max(34px, calc((100vw - 1500px) / 2)) clamp(46px, 5vw, 74px);
   background:
-    linear-gradient(90deg, rgba(3, 8, 44, 0.18) 0%, rgba(8, 15, 68, 0.08) 44%, rgba(255, 255, 255, 0) 100%),
-    url("/biblioteca-bg.png") center top / cover no-repeat;
+    linear-gradient(90deg, rgba(3, 8, 44, 0.08) 0%, rgba(8, 15, 68, 0.03) 44%, rgba(255, 255, 255, 0) 100%),
+    url("/biblioteca-bg-balanced.png") center top / cover no-repeat;
 }
 
 .pill {
