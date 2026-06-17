@@ -64,8 +64,8 @@ body::after {
   margin: 0;
   padding: clamp(58px, 6vw, 92px) max(34px, calc((100vw - 1500px) / 2)) clamp(46px, 5vw, 74px);
   background:
-    linear-gradient(90deg, rgba(3, 8, 44, 0.42) 0%, rgba(8, 15, 68, 0.26) 48%, rgba(255, 255, 255, 0.12) 100%),
-    url("/biblioteca-bg.png") center / cover no-repeat;
+    linear-gradient(90deg, rgba(3, 8, 44, 0.18) 0%, rgba(8, 15, 68, 0.08) 44%, rgba(255, 255, 255, 0) 100%),
+    url("/biblioteca-bg.png") center top / cover no-repeat;
 }
 
 .pill {
@@ -102,6 +102,7 @@ h1 {
   line-height: 0.95;
   letter-spacing: 0;
   color: #ffffff;
+  text-shadow: 0 2px 24px rgba(3, 8, 44, 0.36);
 }
 
 h1 span,
@@ -115,6 +116,7 @@ h1 span,
   font-size: clamp(21px, 1.45vw, 25px);
   font-weight: 700;
   color: #ffffff;
+  text-shadow: 0 2px 18px rgba(3, 8, 44, 0.3);
 }
 
 .lead {
@@ -123,6 +125,7 @@ h1 span,
   color: #d6daec;
   font-size: clamp(18px, 1.35vw, 22px);
   line-height: 1.38;
+  text-shadow: 0 2px 18px rgba(3, 8, 44, 0.24);
 }
 
 .feature-grid {
