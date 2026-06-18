@@ -173,21 +173,26 @@ function buildConfirmationEmail(contact) {
             </div>
             <div style="padding:34px 32px;line-height:1.65">
               <p style="margin:0 0 12px;color:#c9037b;font-weight:700">Înscriere confirmată</p>
-              <h1 style="margin:0 0 22px;color:#11163a;font-size:32px;line-height:1.15">Bună, ${name}. Ești pe lista de așteptare HiLex.</h1>
-              <p style="margin:0 0 18px;font-size:17px">Îți confirmăm că înscrierea ta a fost înregistrată. Te vom anunța când HiLex Individuals este gata de lansare.</p>
-              <p style="margin:0 0 22px;font-size:17px">Pregătim un loc în care informația juridică este explicată clar, pentru situații reale din viața de zi cu zi.</p>
+              <h1 style="margin:0 0 22px;color:#11163a;font-size:32px;line-height:1.15">Bună, ${name}.</h1>
+              <p style="margin:0 0 18px;font-size:17px;font-weight:700;color:#11163a">Ești pe lista de așteptare HiLex.</p>
+              <p style="margin:0 0 18px;font-size:17px">Îți mulțumim pentru interes.</p>
+              <p style="margin:0 0 18px;font-size:17px">Înscrierea ta a fost înregistrată, iar foarte curând îți vom trimite noutăți despre lansarea HiLex Individuals.</p>
+              <p style="margin:0 0 22px;font-size:17px">Pregătim un spațiu în care situațiile reale întâlnesc soluții practice și informații juridice prezentate simplu, clar și ușor de aplicat.</p>
               <div style="margin:26px 0;padding:20px;border-radius:14px;background:#f4f3fb;color:#343958">
                 <strong style="display:block;margin-bottom:8px;color:#11163a">Ce urmează?</strong>
-                Vei primi noutăți despre lansare, acces prioritar și update-uri despre HiLex Individuals.
+                <p style="margin:0 0 8px">✔ Vei afla printre primii când deschidem accesul</p>
+                <p style="margin:0 0 8px">✔ Vei primi noutăți și update-uri despre lansare</p>
+                <p style="margin:0">✔ Vei descoperi în avans ce pregătim pentru comunitatea HiLex</p>
               </div>
-              <p style="margin:0;color:#6b708c">Situații reale. Explicații clare. Acces la informația juridică atunci când contează.</p>
+              <p style="margin:0 0 10px;color:#11163a;font-weight:700">Situații reale. Soluții practice.</p>
+              <p style="margin:0;color:#6b708c">Acces la informația juridică atunci când contează.</p>
               <p style="margin:26px 0 0">Cu drag,<br />Echipa HiLex</p>
             </div>
           </div>
         </div>
       </div>
     `,
-    text: `Bună, ${contact.firstName || ""}!\n\nEști pe lista de așteptare HiLex.\n\nÎți confirmăm că înscrierea ta a fost înregistrată. Te vom anunța când HiLex Individuals este gata de lansare.\n\nPregătim un loc în care informația juridică este explicată clar, pentru situații reale din viața de zi cu zi.\n\nCu drag,\nEchipa HiLex`
+    text: `Bună, ${contact.firstName || ""}.\n\nEști pe lista de așteptare HiLex.\n\nÎți mulțumim pentru interes.\n\nÎnscrierea ta a fost înregistrată, iar foarte curând îți vom trimite noutăți despre lansarea HiLex Individuals.\n\nPregătim un spațiu în care situațiile reale întâlnesc soluții practice și informații juridice prezentate simplu, clar și ușor de aplicat.\n\nCe urmează?\n\n✔ Vei afla printre primii când deschidem accesul\n✔ Vei primi noutăți și update-uri despre lansare\n✔ Vei descoperi în avans ce pregătim pentru comunitatea HiLex\n\nSituații reale. Soluții practice.\n\nAcces la informația juridică atunci când contează.\n\nCu drag,\n\nEchipa HiLex`
   };
 }
 
