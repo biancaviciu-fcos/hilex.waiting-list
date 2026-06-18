@@ -43,8 +43,8 @@ body::after {
   inset: 0 0 auto;
   z-index: 1;
   height: 86px;
-  border-bottom: 1px solid #e4e8f2;
-  background: #ffffff;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.12);
+  background: var(--navy-deep);
   content: "";
   pointer-events: none;
 }
@@ -64,8 +64,16 @@ body::after {
   margin: 0;
   padding: clamp(58px, 6vw, 92px) max(34px, calc((100vw - 1500px) / 2)) clamp(46px, 5vw, 74px);
   background:
-    linear-gradient(90deg, rgba(255, 255, 255, 0.82) 0%, rgba(246, 248, 254, 0.74) 48%, rgba(255, 255, 255, 0.46) 100%),
+    linear-gradient(90deg, rgba(255, 255, 255, 0.62) 0%, rgba(246, 248, 254, 0.42) 44%, rgba(255, 255, 255, 0.12) 100%),
     url("/biblioteca-bg-balanced.png") center top / cover no-repeat;
+}
+
+.hero-copy {
+  padding: clamp(24px, 3vw, 42px);
+  border: 1px solid rgba(255, 255, 255, 0.55);
+  border-radius: 8px;
+  background: rgba(255, 255, 255, 0.68);
+  box-shadow: 0 24px 58px rgba(17, 24, 106, 0.13);
 }
 
 .pill {
@@ -234,7 +242,7 @@ h1 span,
   z-index: 2;
   display: grid;
   justify-items: start;
-  color: var(--navy-deep);
+  color: #ffffff;
   text-decoration: none;
 }
 
@@ -260,6 +268,13 @@ h1 span,
 }
 
 .panel-heading {
+  width: min(100%, 660px);
+  margin: 0 auto;
+  padding: 22px 24px;
+  border: 1px solid rgba(255, 255, 255, 0.52);
+  border-radius: 8px;
+  background: rgba(255, 255, 255, 0.66);
+  box-shadow: 0 20px 44px rgba(17, 24, 106, 0.11);
   text-align: center;
 }
 
@@ -272,7 +287,7 @@ h1 span,
 }
 
 .panel-heading p {
-  margin: 10px 0 28px;
+  margin: 10px 0 0;
   color: #68708a;
   font-size: 20px;
 }
@@ -281,7 +296,7 @@ h1 span,
   display: grid;
   gap: 14px;
   width: min(100%, 600px);
-  margin: 0 auto;
+  margin: 26px auto 0;
   padding: 42px 40px;
   border: 1px solid rgba(255, 255, 255, 0.1);
   border-radius: 8px;
@@ -503,6 +518,10 @@ button:disabled {
 
   .hero-copy {
     display: contents;
+    padding: 0;
+    border: 0;
+    background: transparent;
+    box-shadow: none;
   }
 
   .signup-panel {
@@ -595,6 +614,7 @@ button:disabled {
   .panel-heading {
     order: 8;
     width: 100%;
+    padding: 20px 18px;
   }
 
   .waitlist-form {
